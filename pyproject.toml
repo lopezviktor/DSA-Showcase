@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dsa-showcase"
+version = "0.1.0"
+description = "Showcase of Data Structures & Algorithms in Python"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Victor"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.5.0",
+    "mypy>=1.8",
+]
