@@ -208,3 +208,6 @@ __marimo__/
 
 # VS Code workspace settings
 .vscode/
+
+.DS_Store
+DS_Store
