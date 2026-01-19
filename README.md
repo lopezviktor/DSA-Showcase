@@ -1,2 +1,149 @@
 # DSA-Showcase
-Showcase of Data Structures &amp; Algorithms in Python, including clean implementations, tests, benchmarks, and real-world mini-projects. Designed as a foundational portfolio for future work in AI/ML.
+
+Showcase of **Data Structures & Algorithms implemented from scratch in Python**, with a strong focus on:
+- clean abstractions
+- correct complexity guarantees
+- defensive APIs
+- full unit test coverage
+- CI validation
+
+This repository is designed as a **foundational engineering portfolio**, not as a collection of coding exercises.
+
+---
+
+## 🎯 Goals of this project
+
+- Build a **deep understanding** of core data structures
+- Learn to reason about **trade-offs, constraints and guarantees**
+- Practice writing **production-quality code** (tests, CI, clear APIs)
+- Create a solid base for future work in:
+  - Backend engineering
+  - Systems design
+  - AI / ML
+  - Advanced algorithms
+
+This project prioritizes **clarity and correctness over cleverness**.
+
+---
+
+## 🧱 Implemented Data Structures
+
+### Stack
+**LIFO (Last-In, First-Out)** abstraction.
+
+**Typical use cases**
+- Call stack
+- Undo / backtracking
+- Expression evaluation
+
+**Key properties**
+- Restricted access (top only)
+- All core operations are **O(1)**
+- Clear error handling for empty stack
+
+---
+
+### Queue
+**FIFO (First-In, First-Out)** abstraction.
+
+**Typical use cases**
+- Task queues
+- Request processing
+- Event handling
+- Producer / consumer patterns
+
+**Key properties**
+- Guarantees order of arrival
+- Decouples producers and consumers
+- O(1) operations via index-based design (no shifting)
+
+---
+
+### Deque (Double-Ended Queue)
+A **controlled combination of Stack and Queue**.
+
+**Typical use cases**
+- Sliding window algorithms
+- Undo / redo systems
+- Caches
+- Algorithms requiring access to both ends
+
+**Key properties**
+- Insert/remove from both ends
+- Circular buffer implementation
+- O(1) amortized operations
+- Still a restricted abstraction (not a list)
+
+---
+
+## 🧪 Testing strategy
+
+- All data structures are covered by **unit tests**
+- Error paths are explicitly tested
+- Internal branches are validated
+- Current test coverage: **100%**
+
+Tests are written using `pytest`.
+
+---
+
+## 🔁 Continuous Integration
+
+This project uses **GitHub Actions** to automatically:
+
+- Run tests on multiple Python versions
+- Enforce coverage thresholds
+- Prevent regressions
+
+CI is treated as a **first-class requirement**, not an afterthought.
+
+---
+
+## 🗂 Project structure
+
+```text
+src/dsa_toolkit/
+├── stack.py
+├── queue.py
+├── deque.py
+└── __init__.py
+
+tests/
+├── test_stack.py
+├── test_queue.py
+└── test_deque.py
+```
+
+The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
+
+---
+
+## 🚀 How to run locally
+
+Create a virtual environment and install dependencies:
+```bash
+pip install -e ".[dev]"
+```
+Run tests:
+```bash
+pytest -q
+```
+
+## Roadmap
+
+Upcoming additions:
+- Linked List
+- Trees
+- Graphs
+- Heaps / Priority Queues
+- Algorithmic patterns built on top of these structures
+
+Each addition will follow the same principles:
+clear abstractions -> correct complexity -> tests -> CI.
+
+## Philosophy
+
+Data structures are not about storing data.
+They are about controlling how data can be accessed.
+
+This repository exists to internalize that idea.
