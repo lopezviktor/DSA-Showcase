@@ -76,6 +76,22 @@ A **controlled combination of Stack and Queue**.
 
 ---
 
+### Linked List (Singly)
+A **node-based linear structure** where elements are linked via references instead of contiguous memory.
+
+**Typical use cases**
+- Dynamic collections with frequent insertions/removals
+- Building blocks for trees and graphs
+- Scenarios where index-based access is not required
+
+**Key properties**
+- Non-contiguous memory layout
+- O(1) insertions/removals at the head
+- O(1) append with tail reference
+- O(n) search and access
+
+---
+
 ## 🧪 Testing strategy
 
 - All data structures are covered by **unit tests**
@@ -106,12 +122,14 @@ src/dsa_toolkit/
 ├── stack.py
 ├── queue.py
 ├── deque.py
+├── linked_list.py
 └── __init__.py
 
 tests/
 ├── test_stack.py
 ├── test_queue.py
-└── test_deque.py
+├── test_deque.py
+└── test_linked_list.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
@@ -132,7 +150,6 @@ pytest -q
 ## Roadmap
 
 Upcoming additions:
-- Linked List
 - Trees
 - Graphs
 - Heaps / Priority Queues
