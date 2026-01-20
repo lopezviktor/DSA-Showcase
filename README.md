@@ -109,6 +109,24 @@ A **bidirectional node-based linear structure** where each element keeps referen
 
 ---
 
+### Binary Tree
+A **hierarchical, node-based structure** where each node has up to two children (`left` and `right`).
+This implementation represents a **generic Binary Tree** (not a Binary Search Tree).
+
+**Typical use cases**
+- Decision engines and rule evaluation
+- Hierarchical data modeling (configs, permissions)
+- Expression trees
+- Foundations for more advanced trees (BST, heaps, balanced trees)
+
+**Key properties**
+- Non-linear, hierarchical structure
+- Nodes are traversed, not indexed
+- Supports DFS traversals (pre-order, in-order, post-order)
+- Supports BFS traversal (level-order) using a queue
+
+---
+
 ## 🧪 Testing strategy
 
 - All data structures are covered by **unit tests**
@@ -141,6 +159,7 @@ src/dsa_toolkit/
 ├── deque.py
 ├── linked_list.py
 ├── doubly_linked_list.py
+├── binary_tree.py
 └── __init__.py
 
 tests/
@@ -148,7 +167,8 @@ tests/
 ├── test_queue.py
 ├── test_deque.py
 ├── test_linked_list.py
-└── test_doubly_linked_list.py
+├── test_doubly_linked_list.py
+├── test_binary_tree.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
@@ -169,7 +189,6 @@ pytest -q
 ## Roadmap
 
 Upcoming additions:
-- Trees
 - Graphs
 - Heaps / Priority Queues
 - Algorithmic patterns built on top of these structures
