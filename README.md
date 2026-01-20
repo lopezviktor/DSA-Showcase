@@ -92,6 +92,23 @@ A **node-based linear structure** where elements are linked via references inste
 
 ---
 
+### Linked List (Doubly)
+A **bidirectional node-based linear structure** where each element keeps references to both the next and previous nodes.
+
+**Typical use cases**
+- Navigation systems (forward / backward)
+- LRU caches
+- Undo / redo mechanisms
+- Algorithms requiring efficient removals from both ends
+
+**Key properties**
+- Each node stores `next` and `prev` references
+- O(1) insertions/removals at both head and tail
+- Efficient backward traversal via `prev`
+- Higher memory cost compared to singly linked lists
+
+---
+
 ## 🧪 Testing strategy
 
 - All data structures are covered by **unit tests**
@@ -123,13 +140,15 @@ src/dsa_toolkit/
 ├── queue.py
 ├── deque.py
 ├── linked_list.py
+├── doubly_linked_list.py
 └── __init__.py
 
 tests/
 ├── test_stack.py
 ├── test_queue.py
 ├── test_deque.py
-└── test_linked_list.py
+├── test_linked_list.py
+└── test_doubly_linked_list.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
