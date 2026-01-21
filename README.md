@@ -127,6 +127,27 @@ This implementation represents a **generic Binary Tree** (not a Binary Search Tr
 
 ---
 
+### Binary Search Tree (BST)
+A **Binary Tree with an ordering invariant**, where for each node:
+- keys in the left subtree are smaller than the node key
+- keys in the right subtree are greater than the node key
+
+This implementation is **generic and unbalanced**, focusing on clarity and correctness rather than self-balancing.
+
+**Typical use cases**
+- Threshold-based decision systems
+- Efficient lookup of ordered rules
+- Mapping numeric scores to actions or labels
+- Foundations for decision trees and interpretable ML models
+
+**Key properties**
+- Key–value structure (`key` determines order, `value` stores associated data)
+- Efficient search and insertion on average (O(log n))
+- In-order traversal returns elements sorted by key
+- Supports `floor(key)` queries (largest key ≤ input), useful for threshold mapping
+
+---
+
 ## 🧪 Testing strategy
 
 - All data structures are covered by **unit tests**
@@ -160,6 +181,7 @@ src/dsa_toolkit/
 ├── linked_list.py
 ├── doubly_linked_list.py
 ├── binary_tree.py
+├── binary_search_tree.py
 └── __init__.py
 
 tests/
@@ -169,6 +191,7 @@ tests/
 ├── test_linked_list.py
 ├── test_doubly_linked_list.py
 ├── test_binary_tree.py
+├── test_binary_search_tree.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
