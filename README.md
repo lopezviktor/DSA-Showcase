@@ -171,6 +171,26 @@ This implementation is a **stable max-priority queue**:
 
 ---
 
+### Graphs (Directed)
+A **directed graph** models entities (nodes) and directional relationships (edges) between them.
+This implementation uses an **adjacency list** and is designed to integrate naturally with previously built structures.
+
+**Typical use cases**
+- Network and topology modeling
+- Intrusion Detection Systems (IDS) and lateral-movement analysis
+- Dependency graphs and reachability checks
+- Event propagation analysis
+
+**Key properties**
+- Directed edges with automatic node creation on edge insertion
+- Adjacency-list representation using sets (no duplicate edges)
+- Efficient neighborhood queries
+- Breadth-First Search (BFS) using Queue (level-based reachability)
+- Depth-First Search (DFS) using Stack (path existence)
+- Explicit error handling for missing nodes
+
+---
+
 ## 🧪 Testing strategy
 
 - All data structures are covered by **unit tests**
@@ -206,6 +226,7 @@ src/dsa_toolkit/
 ├── binary_tree.py
 ├── binary_search_tree.py
 ├── priority_queue.py
+├── graph.py
 └── __init__.py
 
 tests/
@@ -217,6 +238,7 @@ tests/
 ├── test_binary_tree.py
 ├── test_binary_search_tree.py
 ├── test_priority_queue.py
+├── test_graph.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
@@ -237,7 +259,7 @@ pytest -q
 ## Roadmap
 
 Upcoming additions:
-- Graphs
+- Shortest path algorithms (BFS distance, Dijkstra)
 - Algorithmic patterns built on top of these structures
 
 Each addition will follow the same principles:
