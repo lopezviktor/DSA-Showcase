@@ -5,6 +5,7 @@ from .linked_list import LinkedList, EmptyLinkedListError
 from .doubly_linked_list import DoublyLinkedList, EmptyDoublyLinkedListError
 from .binary_tree import BinaryTree, EmptyBinaryTreeError
 from .binary_search_tree import BinarySearchTree
+from .priority_queue import PriorityQueue, EmptyPriorityQueueError
 
 __all__ = [
     "Stack",
@@ -20,4 +21,6 @@ __all__ = [
     "BinaryTree",
     "EmptyBinaryTreeError",
     "BinarySearchTree",
+    "PriorityQueue",
+    "EmptyPriorityQueueError",
 ]
