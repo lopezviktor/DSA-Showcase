@@ -6,6 +6,7 @@ from .doubly_linked_list import DoublyLinkedList, EmptyDoublyLinkedListError
 from .binary_tree import BinaryTree, EmptyBinaryTreeError
 from .binary_search_tree import BinarySearchTree
 from .priority_queue import PriorityQueue, EmptyPriorityQueueError
+from .graph import Graph, NodeNotFoundError
 
 __all__ = [
     "Stack",
@@ -23,4 +24,6 @@ __all__ = [
     "BinarySearchTree",
     "PriorityQueue",
     "EmptyPriorityQueueError",
+    "Graph",
+    "NodeNotFoundError",
 ]
