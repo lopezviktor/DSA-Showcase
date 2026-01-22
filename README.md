@@ -148,6 +148,29 @@ This implementation is **generic and unbalanced**, focusing on clarity and corre
 
 ---
 
+### Priority Queue (Heap)
+A **Priority Queue** is an abstraction that always processes the element with the highest priority first.
+Internally, it is implemented using a **binary heap**, but the exposed API focuses on *behavior*, not structure.
+
+This implementation is a **stable max-priority queue**:
+- higher priority values are processed first
+- when priorities are equal, insertion order (FIFO) is preserved
+
+**Typical use cases**
+- Alert prioritization in monitoring and IDS systems
+- Task scheduling
+- Top-K queries (e.g. most critical events)
+- Event-driven systems where urgency matters
+
+**Key properties**
+- Insert (`push`) and remove (`pop`) in O(log n)
+- Peek highest-priority element in O(1)
+- Stable ordering for equal priorities
+- Array-backed heap for predictable memory usage
+- Supports non-destructive `top_k(k)` queries
+
+---
+
 ## 🧪 Testing strategy
 
 - All data structures are covered by **unit tests**
@@ -182,6 +205,7 @@ src/dsa_toolkit/
 ├── doubly_linked_list.py
 ├── binary_tree.py
 ├── binary_search_tree.py
+├── priority_queue.py
 └── __init__.py
 
 tests/
@@ -192,6 +216,7 @@ tests/
 ├── test_doubly_linked_list.py
 ├── test_binary_tree.py
 ├── test_binary_search_tree.py
+├── test_priority_queue.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
@@ -213,7 +238,6 @@ pytest -q
 
 Upcoming additions:
 - Graphs
-- Heaps / Priority Queues
 - Algorithmic patterns built on top of these structures
 
 Each addition will follow the same principles:
