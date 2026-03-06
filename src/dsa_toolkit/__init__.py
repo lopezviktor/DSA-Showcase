@@ -7,6 +7,7 @@ from .binary_tree import BinaryTree, EmptyBinaryTreeError
 from .binary_search_tree import BinarySearchTree
 from .priority_queue import PriorityQueue, EmptyPriorityQueueError
 from .graph import Graph, NodeNotFoundError
+from .hash_map import HashMap, KeyNotFoundError
 
 __all__ = [
     "Stack",
@@ -26,4 +27,6 @@ __all__ = [
     "EmptyPriorityQueueError",
     "Graph",
     "NodeNotFoundError",
+    "HashMap",
+    "KeyNotFoundError",
 ]
