@@ -171,23 +171,74 @@ This implementation is a **stable max-priority queue**:
 
 ---
 
-### Graphs (Directed)
+### Graphs (Directed, Weighted)
 A **directed graph** models entities (nodes) and directional relationships (edges) between them.
-This implementation uses an **adjacency list** and is designed to integrate naturally with previously built structures.
+This implementation uses an **adjacency list**, supports **optional edge weights**, and integrates the previously built `Queue` (BFS) and `Stack` (DFS).
 
 **Typical use cases**
 - Network and topology modeling
 - Intrusion Detection Systems (IDS) and lateral-movement analysis
 - Dependency graphs and reachability checks
-- Event propagation analysis
+- Shortest-path routing between IoT nodes (edge vs cloud cost modelling)
 
 **Key properties**
 - Directed edges with automatic node creation on edge insertion
-- Adjacency-list representation using sets (no duplicate edges)
-- Efficient neighborhood queries
-- Breadth-First Search (BFS) using Queue (level-based reachability)
-- Depth-First Search (DFS) using Stack (path existence)
+- Adjacency-list representation; optional float weights per edge
+- Breadth-First Search (BFS) using `Queue` — level-based reachability and unweighted shortest path
+- Depth-First Search (DFS) using `Stack` — path existence
+- **Dijkstra's algorithm** for weighted shortest path (O((V + E) log V))
+- `shortest_path` dispatcher: Dijkstra when weights are present, BFS otherwise
 - Explicit error handling for missing nodes
+
+---
+
+### HashMap
+A **generic hash map** using **separate chaining** for collision resolution.
+
+**Typical use cases**
+- O(1) lookup of suspicious IPs → alert counts in IDS
+- Feature → normalized-value mapping during ML inference
+- Frequency counting of network traffic patterns
+
+**Key properties**
+- Dynamic resizing: doubles capacity when load factor exceeds 0.75
+- `put`, `get`, `delete`, `contains_key` all O(1) amortized
+- `keys()`, `values()`, `items()` in O(n)
+- `__contains__` and `__len__` dunder support
+
+---
+
+### Sorting Algorithms
+Four classic comparison-based sorting algorithms, each implemented as a standalone function operating on a list in-place (where applicable).
+
+| Algorithm | Best | Average | Worst | Space | Notes |
+|-----------|------|---------|-------|-------|-------|
+| `insertion_sort` | O(n) | O(n²) | O(n²) | O(1) | Stable; efficient on nearly-sorted data |
+| `merge_sort` | O(n log n) | O(n log n) | O(n log n) | O(n) | Stable; divide-and-conquer |
+| `quick_sort` | O(n log n) | O(n log n) | O(n²) | O(log n) | Unstable; median-of-three pivot |
+| `heap_sort` | O(n log n) | O(n log n) | O(n log n) | O(1) | Unstable; in-place heapify |
+
+**Typical use cases**
+- Ranking network events by severity or timestamp
+- Preprocessing feature vectors before ML inference
+- Demonstrating trade-offs between stability, memory, and worst-case guarantees
+
+---
+
+### Trie (Prefix Tree)
+A **Trie** stores string keys character by character, giving O(m) search, insert, and delete independent of the number of stored words (where m is the key length).
+
+**Typical use cases**
+- **IP prefix matching**: insert CIDR prefixes, use `starts_with` to detect blacklisted address ranges
+- **Domain blacklists**: exact C&C domain lookup with `contains`; subdomain detection with `starts_with`
+- **Autocomplete / enumeration**: `words_with_prefix` lists all matching domains or IPs under a given prefix
+
+**Key properties**
+- Generic key → value mapping (`Trie[V]`)
+- `insert`, `search`, `contains`, `starts_with`, `words_with_prefix` all O(m)
+- `delete` with recursive post-order **node pruning** — dead leaf nodes are removed automatically
+- `words_with_prefix("")` enumerates all stored words (sorted)
+- `__contains__` and `__len__` dunder support
 
 ---
 
@@ -227,6 +278,9 @@ src/dsa_toolkit/
 ├── binary_search_tree.py
 ├── priority_queue.py
 ├── graph.py
+├── hash_map.py
+├── sorting.py
+├── trie.py
 └── __init__.py
 
 tests/
@@ -239,6 +293,9 @@ tests/
 ├── test_binary_search_tree.py
 ├── test_priority_queue.py
 ├── test_graph.py
+├── test_hash_map.py
+├── test_sorting.py
+└── test_trie.py
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
@@ -258,9 +315,11 @@ pytest -q
 
 ## Roadmap
 
-Upcoming additions:
-- Shortest path algorithms (BFS distance, Dijkstra)
-- Algorithmic patterns built on top of these structures
+Potential upcoming additions:
+- Balanced BST (AVL or Red-Black Tree)
+- LRU Cache (HashMap + DoublyLinkedList composition)
+- Union-Find (Disjoint Set)
+- Dynamic programming patterns
 
 Each addition will follow the same principles:
 clear abstractions -> correct complexity -> tests -> CI.
