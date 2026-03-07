@@ -242,12 +242,57 @@ A **Trie** stores string keys character by character, giving O(m) search, insert
 
 ---
 
+### LRU Cache
+A **Least Recently Used Cache** that evicts the least recently accessed item when capacity is exceeded. Implemented via **composition** of `HashMap` (O(1) lookup) and `DoublyLinkedList` (O(1) eviction).
+
+**Typical use cases**
+- Caching repeated DNS resolutions in a network monitor
+- Bounding memory usage in high-throughput packet processing
+- Storing recent alert records in a sliding window
+
+**Key properties**
+- `get` and `put` both O(1)
+- Strict capacity enforcement — oldest item is evicted automatically
+- `__contains__`, `__len__`, and `__getitem__` / `__setitem__` dunder support
+
+---
+
+### Bloom Filter
+A **probabilistic membership filter** that answers "is this item in the set?" in O(k) time using a bit array of size m and k independent hash functions. May return false positives, never false negatives.
+
+**Typical use cases**
+- First-pass check for known-malicious IPs/domains before an expensive HashMap lookup
+- Memory-constrained edge devices (Raspberry Pi) filtering packet signatures
+- Deduplication of seen flow identifiers in high-throughput network streams
+- False-positive-tolerant early-warning layer in a multi-stage IDS pipeline
+
+**Key properties**
+- No third-party dependencies — `bytearray` bit array, hash functions via `hash((item, seed)) % m`
+- Sized from desired capacity `n` and target false-positive rate `p` using standard Bloom Filter math
+- `add` and `contains` in O(k); analytical `false_positive_rate()` in O(1)
+- No deletion — only `clear()` resets the filter
+- Accepts any hashable type (no `Generic[T]` needed — items are never stored)
+
+---
+
 ## 🧪 Testing strategy
 
-- All data structures are covered by **unit tests**
-- Error paths are explicitly tested
-- Internal branches are validated
-- Current test coverage: **100%**
+Tests are organized following the **testing pyramid**:
+
+**Unit tests** (`test_*.py` per module) — each data structure is tested in isolation:
+- All public methods and error paths
+- Internal branches and edge cases
+- Current coverage: **100% across all modules**
+
+**Integration tests** (`test_ids_pipeline.py`) — a multi-stage IDS pipeline chains three structures together:
+
+```
+Packet IP → BloomFilter (O(k), probabilistic first-pass)
+          → HashMap     (O(1), exact lookup — eliminates false positives)
+          → PriorityQueue (max-heap, severity-ordered alert queue)
+```
+
+This tests cross-module composition under realistic IoT/IDS workloads (mixed traffic, high-throughput streams, full pipeline reset and reload).
 
 Tests are written using `pytest`.
 
@@ -281,6 +326,8 @@ src/dsa_toolkit/
 ├── hash_map.py
 ├── sorting.py
 ├── trie.py
+├── lru_cache.py
+├── bloom_filter.py
 └── __init__.py
 
 tests/
@@ -295,7 +342,10 @@ tests/
 ├── test_graph.py
 ├── test_hash_map.py
 ├── test_sorting.py
-└── test_trie.py
+├── test_trie.py
+├── test_lru_cache.py
+├── test_bloom_filter.py
+└── test_ids_pipeline.py   ← integration tests
 ```
 
 The `src/` layout is intentionally used to avoid import ambiguities and mirror real-world Python packages.
@@ -317,8 +367,8 @@ pytest -q
 
 Potential upcoming additions:
 - Balanced BST (AVL or Red-Black Tree)
-- LRU Cache (HashMap + DoublyLinkedList composition)
 - Union-Find (Disjoint Set)
+- Skip List
 - Dynamic programming patterns
 
 Each addition will follow the same principles:
