@@ -8,6 +8,7 @@ from .binary_search_tree import BinarySearchTree
 from .priority_queue import PriorityQueue, EmptyPriorityQueueError
 from .graph import Graph, NodeNotFoundError
 from .hash_map import HashMap, KeyNotFoundError
+from .sorting import insertion_sort, merge_sort, quick_sort, heap_sort
 
 __all__ = [
     "Stack",
@@ -29,4 +30,8 @@ __all__ = [
     "NodeNotFoundError",
     "HashMap",
     "KeyNotFoundError",
+    "insertion_sort",
+    "merge_sort",
+    "quick_sort",
+    "heap_sort",
 ]
