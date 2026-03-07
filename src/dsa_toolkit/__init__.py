@@ -10,6 +10,7 @@ from .graph import Graph, NodeNotFoundError
 from .hash_map import HashMap, KeyNotFoundError
 from .sorting import insertion_sort, merge_sort, quick_sort, heap_sort
 from .trie import Trie, TrieKeyError
+from .lru_cache import LRUCache, LRUCacheKeyError
 
 __all__ = [
     "Stack",
@@ -37,4 +38,6 @@ __all__ = [
     "heap_sort",
     "Trie",
     "TrieKeyError",
+    "LRUCache",
+    "LRUCacheKeyError",
 ]
