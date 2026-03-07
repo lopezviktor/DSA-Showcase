@@ -11,6 +11,7 @@ from .hash_map import HashMap, KeyNotFoundError
 from .sorting import insertion_sort, merge_sort, quick_sort, heap_sort
 from .trie import Trie, TrieKeyError
 from .lru_cache import LRUCache, LRUCacheKeyError
+from .bloom_filter import BloomFilter, BloomFilterError
 
 __all__ = [
     "Stack",
@@ -40,4 +41,6 @@ __all__ = [
     "TrieKeyError",
     "LRUCache",
     "LRUCacheKeyError",
+    "BloomFilter",
+    "BloomFilterError",
 ]
